@@ -1,0 +1,24 @@
+name: weldshop
+
+services:
+  weldshop:
+    container_name: WeldShop
+    build:
+      context: ./WeldShop
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/weldshop
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:17.2
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
