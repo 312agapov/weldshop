@@ -1,9 +1,6 @@
 package ru.agapovla.weldshop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import ru.agapovla.weldshop.entity.enums.PowerSupplyType;
@@ -16,6 +13,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@Table(name = "welds")
 public class Weld {
 
     @Id
@@ -28,8 +26,12 @@ public class Weld {
 
     private Integer minAmperage;
     private Integer maxAmperage;
+
+    @Enumerated(EnumType.STRING)
     private PowerSupplyType powerSupplyType;
+    @Enumerated(EnumType.STRING)
     private WeldType weldType;
+    @Enumerated(EnumType.STRING)
     private Set<WeldWorkType> weldWorkType;
 
 }

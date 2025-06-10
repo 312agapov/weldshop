@@ -1,9 +1,6 @@
 package ru.agapovla.weldshop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import ru.agapovla.weldshop.entity.enums.ConnectorType;
@@ -14,6 +11,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@Table(name = "torches")
 public class Torch {
 
     @Id
@@ -21,7 +19,10 @@ public class Torch {
     private UUID id;
 
     private Integer length;
-    private WeldWorkType torchType;
-    private ConnectorType connectorType;
+    private Integer price;
 
+    @Enumerated(EnumType.STRING)
+    private WeldWorkType torchType;
+    @Enumerated(EnumType.STRING)
+    private ConnectorType connectorType;
 }
